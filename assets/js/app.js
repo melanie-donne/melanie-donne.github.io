@@ -154,7 +154,7 @@ particlesJS('particles-js',
     "config_demo": {
       "hide_card": false,
       "background_color": "",
-      "background_image": "assets/img/Photo-by-Joanna-Kosinska-on-Unsplash-2880x1800.jpg",
+      "background_image": "",
       "background_position": "50% 50%",
       "background_repeat": "no-repeat",
       "background_size": "cover"
