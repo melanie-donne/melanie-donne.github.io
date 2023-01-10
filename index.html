@@ -9,6 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" media="screen" href="assets/css/style.css">
 
+  <link rel="stylesheet" href="assets/css/cursor.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -33,17 +36,17 @@
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">Accueil</a></li>
+          <li><a class="nav-link scrollto" href="#about">À propos</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#work">Work</a></li>
+          <li><a class="nav-link scrollto " href="#work">Réalisations</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
     </div>
   </header>
-<!-- ======= End Header Section ======= -->
+  <!-- ======= End Header Section ======= -->
 
   <div id="hero" class="hero route bg-image"  >
     <video class="overlay-itro" poster="assets/img/plante_index.mp4" playsinline autoplay muted loop>
@@ -63,7 +66,7 @@
   <main id="main">
 		<!-- ======= About Section ======= -->
 		<section id="about">
-			<!-- CONTAINER -->
+			<!-- ======= Description Container ======= -->
 			<div class="container aboutme">
 				<h2>A little about me...</h2>
 				<div class="row info">
@@ -88,7 +91,9 @@
 					</div>
 				</div>
       </div>
+      <!-- ======= End Description Container ======= -->
 
+      <!-- ======= Compétences Container ======= -->
       <div class="container compcode ">
         <section>
           <div class="row">
@@ -140,38 +145,41 @@
             </div>
           </div>
         </section>
-      </div>  
+      </div> 
+      <!-- ======= End Compétences Container ======= --> 
     </section> 
 		<!-- ======= End About Section ======= -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services-mf pt-5 route">
-      <div class="container competences">
-        <h2 class="titre-set">Services</h2>
-        <div class="row">
-          <div class="col">
-            <img class="img-services"src="assets/img/illustration-blanc.png" alt="illustration-blanc">
-            <h5>Identité & Logotype</h5>
-            <p>Création de l'identité visuelle ainsi que de la charte graphique associée</p>
-          </div>
-          <div class="col">
-            <img class="img-services" src="assets/img/webdesign-blanc.png" alt="webdesign-blanc">
-            <h5>Webdesign</h5>
-            <p>Création sur-mesure et intégration de site vitrine en responsive design avec aux langages HTML/CSS/JS ou via Wordpress</p>
-          </div>
-          <div class="col">
-            <img class="img-services" src="assets/img/developpement_blanc.png" alt="">
-            <h5>Programmation</h5>
-            <p>Spécification, conception, développemment d'applications</p>
-          </div>
-          <div class="col">
-            <img class="img-services" src="assets/img/management-blanc.png" alt="">
-            <h5>Gestion d'équipe</h5>
-            <p>Accompagnement d'équipe en but d'atteindre les objectifs demandés, tout en donnant du sens aux missions</p>
-          </div>
-        </div> 
-      </div>
-    </section>
+    <div class="parallax-world-of-ugg">
+      <section id="services" class="services-mf pt-5 route parallax-one">
+        <div class="container competences">
+          <h2 class="titre-set">Services</h2>
+          <div class="row">
+            <div class="col">
+              <img class="img-services"src="assets/img/illustration-blanc.png" alt="illustration-blanc">
+              <h5>Identité & Logotype</h5>
+              <p>Création de l'identité visuelle ainsi que de la charte graphique associée</p>
+            </div>
+            <div class="col">
+              <img class="img-services" src="assets/img/webdesign-blanc.png" alt="webdesign-blanc">
+              <h5>Webdesign</h5>
+              <p>Création sur-mesure et intégration de site vitrine en responsive design avec aux langages HTML/CSS/JS ou via Wordpress</p>
+            </div>
+            <div class="col">
+              <img class="img-services" src="assets/img/developpement_blanc.png" alt="">
+              <h5>Programmation</h5>
+              <p>Spécification, conception, développemment d'applications</p>
+            </div>
+            <div class="col">
+              <img class="img-services" src="assets/img/management-blanc.png" alt="">
+              <h5>Gestion d'équipe</h5>
+              <p>Accompagnement d'équipe en but d'atteindre les objectifs demandés, tout en donnant du sens aux missions</p>
+            </div>
+          </div> 
+        </div>
+      </section>
+    </div>
     <!-- ======= End Services Section ======= -->
 
     <!-- ======= Portfolio Section ======= -->
@@ -272,6 +280,9 @@
   </footer>
   <!-- ======= End Footer ======= -->
 
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
   <!-- ======= Cursor ======= -->
   <div class='cursor' id="cursor"></div>
 	<div class='cursor2' id="cursor2"></div>
@@ -295,6 +306,7 @@
 <script src="assets/js/particles.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/cursor.js"></script>
 
 </body>
 </html>

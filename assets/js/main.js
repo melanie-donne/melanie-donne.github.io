@@ -1,10 +1,3 @@
-/**
-* Template Name: DevFolio - v4.10.0
-* Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 function btnChangeTxt(el) {
   if (el.innerHTML === "Hide content") el.innerHTML = "Show content";
   else el.innerHTML = "Hide content";
@@ -12,7 +5,6 @@ function btnChangeTxt(el) {
 (function() {
   "use strict";
   
-
    /**
    * Porfolio isotope and filter
    */
@@ -24,9 +16,9 @@ function btnChangeTxt(el) {
         layoutMode: 'fitRows'
       });
 
-      let portfolioFilters = select('#portfolio-flters li', true);
+      let portfolioFilters = select('.hvr-outline-out', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '.hvr-outline-out', function(e) {
         e.preventDefault();
         portfolioFilters.forEach(function(el) {
           el.classList.remove('filter-active');
@@ -214,24 +206,6 @@ function btnChangeTxt(el) {
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
-  });
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
   });
 
   /**
