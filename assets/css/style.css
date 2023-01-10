@@ -434,8 +434,6 @@ canvas{
 
 /* TEST index*/
 
-
-
 video {
   object-fit: cover; 
   filter: brightness(69%) contrast(147%) saturate(189%) grayscale(10%) blur(1px) ;
@@ -461,7 +459,6 @@ video {
   position: relative;
   color: white;
 }
-
 
 .hero .hero-content {
   text-align: center;
@@ -540,7 +537,6 @@ video {
   color: #fff;
 }
 
-
 /* 
 autre
 */
@@ -554,7 +550,6 @@ autre
   height: 100%;
   display: table;
 }
-
 
 /*--------------------------------------------------------------
 # About
@@ -619,8 +614,6 @@ autre
 	border-bottom: 2px dashed #918D8D;
 }
 
-
-
 .competences{
   text-align: center;
 }
@@ -644,7 +637,6 @@ autre
 .aboutme{
 padding: 5% 0 5% 0;  
 }
-
 
 /*--------------------------------------------------------------
 # Fin About
