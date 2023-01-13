@@ -2,6 +2,9 @@
 # Footer
 --------------------------------------------------------------*/
 
+.logo{
+  width: 25%;
+}
 
 footer {
     text-align: center;
@@ -37,6 +40,7 @@ footer {
   ul.footer__social {
     display: flex;
     justify-content: center;
+    list-style-type: none;
   }
   
   .footer__social-list {

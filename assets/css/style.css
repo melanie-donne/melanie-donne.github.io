@@ -39,6 +39,11 @@ input,select{vertical-align:middle}
   src: url(../fonts/Yomogi-Regular.ttf);
 }
 
+@font-face {
+  font-family: Love;
+  src: url(../fonts/Love.ttf);
+}
+
 h1{
   font-family: Yomogi !important;
 }
@@ -136,10 +141,12 @@ canvas{
   padding: 0;
   font-weight: 600;
   letter-spacing: 1px;
+  font-family: Love !important;
 }
 
 #header .logo a {
   color: white;
+  text-decoration: none;
 }
 
 #header .logo img {
