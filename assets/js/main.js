@@ -246,9 +246,5 @@ function btnChangeTxt(el) {
     });
   }
 
-  /**
-   * Initiate Pure Counter 
-   */
-  new PureCounter();
 
 })()

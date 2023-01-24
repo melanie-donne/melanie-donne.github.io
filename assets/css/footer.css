@@ -29,7 +29,7 @@ p{
 footer {
     text-align: center;
     color: #fff;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.9) !important;
   }
   
   footer .copyright {

@@ -542,7 +542,7 @@ canvas{
 
 video {
   object-fit: cover; 
-  filter: brightness(69%) contrast(147%) saturate(189%) grayscale(10%) blur(1px) ;
+  filter: brightness(75%) contrast(120%) saturate(200%) grayscale(75%) ;
 }
 
 .titre-index{
@@ -581,6 +581,7 @@ video {
 .hero .hero-title {
   font-weight: 600;
   font-size: 3rem;
+
 }
 
 @media (min-width: 768px) {
@@ -985,7 +986,7 @@ width: 35%;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
   border: 6px solid #f2f2f2;
-  border-top: 6px solid #0078ff;
+  border-top: 6px solid #65AB95;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -1069,5 +1070,42 @@ particles.js container
   background-repeat: no-repeat;
 }
 
+/*--------------------------------------------------------------
+Responsive
+--------------------------------------------------------------*/
+@media screen and (max-width: 800px){
 
+.aboutme{
+  text-align: center !important;
+}
+
+#about .info{
+  text-align: center !important;
+}
+
+#about{
+  padding:0;
+}
+
+.img-circle{
+  padding-top: 3%;
+}
+
+.compcode{
+  padding-top:3%;
+}  
+
+#services{
+  padding:0;
+}
+
+.hvr-outline-out{
+  text-align: center !important;
+}
+
+.rowcompetences{
+display: block;
+}
+
+}
 

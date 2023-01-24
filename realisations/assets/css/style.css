@@ -61,6 +61,38 @@ max-width: 75%;
 
 }
 
+.col{
+  padding-bottom: 3%;
+}
+
+.menu {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	list-style: none;
+}
+
+.menu-item {
+	margin-right: 25px;
+  text-decoration: none;
+  color: black;
+}
+
+.menu-item:hover{
+  text-decoration: none;
+  color: #65AB95;
+}
+
+.menu-filter{
+padding-bottom: 3%;
+}
+
+.active{
+  color: #65AB95;
+  font-weight: bold;
+}
+
+
 /* Bouton Outline Out */
 [class^="hvr-outline"] {
   margin: .4em;
@@ -335,5 +367,20 @@ body{
 #projects .section-heading h6{
   color: #dd8532;
 }
+
+/*--------------------------------------------------------------
+Responsive
+--------------------------------------------------------------*/
+@media screen and (max-width: 800px){
+
+  .menu-filter {
+    padding-bottom: 5%;
+  }
+  .menu {
+    text-align: center !important;
+    display: grid;
+    list-style: none;
+  }
+  }
 
 
