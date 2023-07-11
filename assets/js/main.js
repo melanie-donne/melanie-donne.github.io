@@ -1,38 +1,5 @@
-function btnChangeTxt(el) {
-  if (el.innerHTML === "Hide content") el.innerHTML = "Show content";
-  else el.innerHTML = "Hide content";
-}
 (function() {
   "use strict";
-  
-   /**
-   * Porfolio isotope and filter
-   */
-   window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
-      });
-
-      let portfolioFilters = select('.hvr-outline-out', true);
-
-      on('click', '.hvr-outline-out', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-      }, true);
-    }
-
-  });
-
 
   /**
    * Easy selector helper function
@@ -51,6 +18,7 @@ function btnChangeTxt(el) {
    */
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all)
+
     if (selectEl) {
       if (all) {
         selectEl.forEach(e => e.addEventListener(type, listener))
@@ -61,80 +29,13 @@ function btnChangeTxt(el) {
   }
 
   /**
-   * Easy on scroll event listener 
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
-  const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
-
-  /**
    * Scrolls to an element with header offset
    */
   const scrollto = (el) => {
-    let header = select('#header')
-    let offset = header.offsetHeight
-
-    if (!header.classList.contains('header-scrolled')) {
-      offset -= 16
-    }
-
-    let elementPos = select(el).offsetTop
     window.scrollTo({
-      top: elementPos - offset,
+      top: 0,
       behavior: 'smooth'
     })
-  }
-
-  /**
-   * Toggle .header-scrolled class to #header when page is scrolled
-   */
-  let selectHeader = select('#header')
-  if (selectHeader) {
-    const headerScrolled = () => {
-      if (window.scrollY > 100) {
-        selectHeader.classList.add('header-scrolled')
-      } else {
-        selectHeader.classList.remove('header-scrolled')
-      }
-    }
-    window.addEventListener('load', headerScrolled)
-    onscroll(document, headerScrolled)
-  }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
   }
 
   /**
@@ -147,59 +48,162 @@ function btnChangeTxt(el) {
   })
 
   /**
-   * Mobile nav dropdowns activate
-   */
-  on('click', '.navbar .dropdown > a', function(e) {
-    if (select('#navbar').classList.contains('navbar-mobile')) {
-      e.preventDefault()
-      this.nextElementSibling.classList.toggle('dropdown-active')
-    }
-  }, true)
-
-  /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
+  on('click', '#navbar .nav-link', function(e) {
+    let section = select(this.hash)
+    if (section) {
       e.preventDefault()
 
       let navbar = select('#navbar')
+      let header = select('#header')
+      let sections = select('section', true)
+      let navlinks = select('#navbar .nav-link', true)
+
+      navlinks.forEach((item) => {
+        item.classList.remove('active')
+      })
+
+      this.classList.add('active')
+
       if (navbar.classList.contains('navbar-mobile')) {
         navbar.classList.remove('navbar-mobile')
         let navbarToggle = select('.mobile-nav-toggle')
         navbarToggle.classList.toggle('bi-list')
         navbarToggle.classList.toggle('bi-x')
       }
+
+      if (this.hash == '#header') {
+        header.classList.remove('header-top')
+        sections.forEach((item) => {
+          item.classList.remove('section-show')
+        })
+        return;
+      }
+
+      if (!header.classList.contains('header-top')) {
+        header.classList.add('header-top')
+        setTimeout(function() {
+          sections.forEach((item) => {
+            item.classList.remove('section-show')
+          })
+          section.classList.add('section-show')
+
+        }, 350);
+      } else {
+        sections.forEach((item) => {
+          item.classList.remove('section-show')
+        })
+        section.classList.add('section-show')
+      }
+
       scrollto(this.hash)
     }
   }, true)
 
   /**
-   * Scroll with ofset on page load with hash links in the url
+   * Activate/show sections on load with hash links
    */
   window.addEventListener('load', () => {
     if (window.location.hash) {
-      if (select(window.location.hash)) {
+      let initial_nav = select(window.location.hash)
+
+      if (initial_nav) {
+        let header = select('#header')
+        let navlinks = select('#navbar .nav-link', true)
+
+        header.classList.add('header-top')
+
+        navlinks.forEach((item) => {
+          if (item.getAttribute('href') == window.location.hash) {
+            item.classList.add('active')
+          } else {
+            item.classList.remove('active')
+          }
+        })
+
+        setTimeout(function() {
+          initial_nav.classList.add('section-show')
+        }, 350);
+
         scrollto(window.location.hash)
       }
     }
   });
 
   /**
-   * Intro type effect
+   * Skills animation
    */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
+  let skilsContent = select('.skills-content');
+  if (skilsContent) {
+    new Waypoint({
+      element: skilsContent,
+      offset: '80%',
+      handler: function(direction) {
+        let progress = select('.progress .progress-bar', true);
+        progress.forEach((el) => {
+          el.style.width = el.getAttribute('aria-valuenow') + '%'
+        });
+      }
+    })
   }
+
+  /**
+   * Testimonials slider
+   */
+  new Swiper('.testimonials-slider', {
+    speed: 600,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      }
+    }
+  });
+
+  /**
+   * Porfolio isotope and filter
+   */
+  window.addEventListener('load', () => {
+    let portfolioContainer = select('.portfolio-container');
+    if (portfolioContainer) {
+      let portfolioIsotope = new Isotope(portfolioContainer, {
+        itemSelector: '.portfolio-item',
+        layoutMode: 'fitRows'
+      });
+
+      let portfolioFilters = select('#portfolio-flters li', true);
+
+      on('click', '#portfolio-flters li', function(e) {
+        e.preventDefault();
+        portfolioFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+      }, true);
+    }
+
+  });
 
   /**
    * Initiate portfolio lightbox 
@@ -209,42 +213,118 @@ function btnChangeTxt(el) {
   });
 
   /**
-  * Porfolio isotope and filter
-  */
-  window.addEventListener('load', () => {
-  let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
-      });
-  
-      let portfolioFilters = select('#portfolio-flters li', true);
-  
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-          });
-        this.classList.add('filter-active');
-  
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-      }, true);
-    }
-  
+   * Initiate portfolio details lightbox 
+   */
+  const portfolioDetailsLightbox = GLightbox({
+    selector: '.portfolio-details-lightbox',
+    width: '90%',
+    height: '90vh'
   });
 
   /**
-   * Preloader
+   * Portfolio details slider
    */
-  let preloader = select('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
-    });
-  }
+  new Swiper('.portfolio-details-slider', {
+    speed: 400,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    }
+  });
 
+  /**
+   * Initiate Pure Counter 
+   */
+  new PureCounter();
 
 })()
+
+/* Background */
+var pixels = [];
+
+for (var i = 0; i <= 2600; i++) {
+  var thisPixel = document.createElement("div");
+  pixels.push(thisPixel);
+  var brightness = Math.random() / 2 + 0.5;
+  var sourceColor = "#1F1A70";
+  thisPixel.className = "pixel";
+  document.getElementById("background").appendChild(thisPixel);
+  thisPixel.style.backgroundColor = adjustBrightness(sourceColor, brightness);
+}
+
+animateBackground();
+
+function animateBackground() {
+  var thisPixel;
+  setInterval(function() {
+    for (var i = 0; i < 50; i++) {
+      thisPixel = pixels[Math.floor(Math.random() * pixels.length)];
+      thisPixel.className += " twinkle";
+      thisPixel.addEventListener('animationend', function() {
+        this.className = "pixel";
+      });
+    }
+  }, 5000 / 3);
+}
+
+function adjustBrightness(originalColor, adjustment) {
+  var rgbColor = null;
+  if (isHexColor(originalColor)) {
+    rgbColor = hexToRGB(originalColor);
+  } else if (isRGBColor(originalColor)) {
+    var rgbArray = originalColor.match(/\d+/g);
+    rgbColor = {
+      red: parseInt(rgbArray[0]),
+      green: parseInt(rgbArray[1]),
+      blue: parseInt(rgbArray[2])
+    };
+  }
+
+  if (rgbColor) {
+    var newColor = {
+      red: clamp(Math.floor(rgbColor.red * adjustment)),
+      green: clamp(Math.floor(rgbColor.green * adjustment)),
+      blue: clamp(Math.floor(rgbColor.blue * adjustment))
+    };
+    return "rgb(" + newColor.red + ", " + newColor.green + ", " + newColor.blue + ")";
+  }
+}
+
+function isHexColor(color) {
+  return color.match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i);
+}
+
+function isRGBColor(color) {
+  return color.match(/^rgb\(\s?\d+\s?,\s?\d+\s?,\s?\d+\s?\)$/);
+}
+
+function hexToRGB(originalColor) {
+  var vals = originalColor.match(/\w+/)[0];
+  var retVal = {};
+
+  if (vals.length === 3) {
+    vals = vals[0] + vals[0] + vals[1] + vals[1] + vals[2] + vals[2];
+  }
+
+  retVal.red = hexToDec(vals.substr(0, 2));
+  retVal.green = hexToDec(vals.substr(2, 2));
+  retVal.blue = hexToDec(vals.substr(4, 2));
+
+  return retVal;
+}
+
+function hexToDec(hex) {
+  return parseInt(hex, 16);
+}
+
+function clamp(val) {
+  if (val < 0) return 0;
+  if (val > 255) return 255;
+  return val;
+}
